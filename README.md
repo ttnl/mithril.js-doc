@@ -1,4 +1,4 @@
-# Mithril 文档
+﻿# Mithril 文档
 
 本文档翻译自 [Mithril 官方文档](http://mithril.js.org/getting-started.html)。
 
@@ -14,5 +14,6 @@ Mithril 是一个轻量级客户端 JavaScript MVC 框架。
 
 GitBook https://www.gitbook.com/book/justjavac/mithriljs/details
 
-## 贡献者（及翻译进度）
+## 贡献者
 
+@justjavac,@ttnl

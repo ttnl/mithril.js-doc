@@ -1,4 +1,4 @@
-## 安装
+﻿## 安装
 
 Mithril 有多种安装方式
 
@@ -6,7 +6,7 @@ Mithril 有多种安装方式
 
 直接在 github 下载[ zip 格式的最新版本](http://lhorie.github.io/mithril/mithril.min.zip)。
 
-旧版本的链接可以在[更新日志](change-log.md)中找到。
+旧版本的链接可以在[更新日志](http://mithril.js.org/change-log.html)中找到。
 
 使用 Mithril 时，需要从 zip 压缩包里面提取出 `.js` 文件：
 
