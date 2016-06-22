@@ -16,4 +16,4 @@ GitBook https://www.gitbook.com/book/justjavac/mithriljs/details
 
 ## 贡献者
 
-@justjavac,@ttnl
+[@justjavac](https://github.com/justjavac/),[@ttnl](https://github.com/ttnl/)

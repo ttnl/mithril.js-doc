@@ -1,14 +1,14 @@
 ﻿## 安装
 
-Mithril 有多种安装方式
+Mithril 有多种安装方式。
 
 ### 直接下载
 
-直接在 github 下载[ zip 格式的最新版本](http://lhorie.github.io/mithril/mithril.min.zip)。
+直接在 GitHub 下载[ zip 格式的最新版本](http://lhorie.github.io/mithril/mithril.min.zip)。
 
 旧版本的链接可以在[更新日志](http://mithril.js.org/change-log.html)中找到。
 
-使用 Mithril 时，需要从 zip 压缩包里面提取出 `.js` 文件：
+使用 Mithril 时，从 zip 压缩包中解压出 `.js` 文件，并在 HTML 中加以引用：
 
 ```html
 <script src="mithril.min.js"></script>
@@ -18,7 +18,7 @@ Mithril 有多种安装方式
 
 ### CDN（内容分发网络）
 
-你也可以通过CDN 使用 Mithril，比如 [cdnjs](http://cdnjs.com/libraries/mithril/) 或 [jsDelivr](http://www.jsdelivr.com/#!mithril)。
+你也可以通过 CDN 使用 Mithril，比如 [cdnjs](http://cdnjs.com/libraries/mithril/) 或 [jsDelivr](http://www.jsdelivr.com/#!mithril)。
 
 CDN 允许用户端缓存相同版本的框架，即使这些框架被不同的网站使用。通过把 JS 库缓存到距离用户最近的服务器上，以提升性能。
 

@@ -1,42 +1,42 @@
-## 开始
+﻿## 开始
 
 ### Mithril 是什么？
 
-Mithril 是一个客户端 javascript MVC 框架，即它是一个工具，使应用程序代码分为数据层(**M**odel)， UI 层(**V**iew)，黏合层(**C**ontroller)。
+Mithril 是一个客户端 javascript MVC 框架，即它是一个工具，使应用程序代码分为数据层(即模型，**M**odel)， UI 层(即视图，**V**iew)，黏合层(即控制器，**C**ontroller)。
 
-Mithril 通过 gzip 压缩后，仅有 12kb 左右，这要归功于 [small, focused, API](mithril.md)。它提供了一个模板引擎与一个虚拟 DOM diff 实现高性能渲染，还提供了其它高级工具，以及支持路由和组件化。
+Mithril 通过 gzip 压缩后，仅有 7.8kb 左右，这要归功于它 [小且专注的 API](mithril.md)。它提供了一个模板引擎与一个虚拟 DOM diff 实现高性能渲染，也通过功能组件提供了其它高级工具，以及支持路由和组件化。
 
-框架的目标是使应用程序代码更容易组织，可读和可维护，帮助你成为一个更好的开发者。
+此框架的目标是使应用程序代码更易组织，易读和易维护，并希望以此帮助您成为一个更好的开发者。
 
-不像某些框架，Mithril 努力避免将您锁定到某个 web 框架上：您可以尽量**少**地使用您所需要的框架。
+不像某些框架，Mithril 努力避免将您束缚于依赖项之网上：按需使用时，您可以尽量小地使用本框架。
 
-然而，使用其整个工具库可以带来很多好处：学习使用函数式编程和巩固良好的编码实践，OOP 和 MVC 只是其中的一些。
+然而，使用整个工具库可以带来很多好处：在现实场景中学习使用函数式编程、充实您的 OOP 和 MVC 的编码实践……不一而足。
 
 ## 一个简单的应用
 
-一旦你安装了 [Mithril](installation.md)，那么开始写 Mighril 代码会让你感到惊讶：
+一旦你安装了 [Mithril](installation.md)，你会发现 Mithril 令人惊讶的非范式：
 
 ```html
 <!doctype html>
 <title>Todo app</title>
 <script src="mithril.min.js"></script>
 <script>
-// App 放在这里
+// App goes here
 </script>
 ```
 
-是的，这是一个有效的 HTML5! 根据规范，`<html>`，`<head>`，`<body>` 标签可以省略，但各自的 DOM 元素仍将作为一个标记碑浏览器隐式地渲染出来。
+是的，这是合法的 HTML5! 根据规范，`<html>`，`<head>`，`<body>` 标签都可以省略，但各自的 DOM 元素仍将隐式地作为一个标记，被浏览器所渲染。
 
 ### 模型（Model）
 
-在 Mithril 中，应用程序通常在一个命名空间中，他包含了一些组件。组件代表了一个可视“页面”或页面的一部分。此外,应用程序可以组织分为三大层：模型、控制器和视图。
+在 Mithril 中，应用程序通常生存在一个命名空间中和它所包含的组件中。所谓组件，仅是可以代表一个可视“页面”、或页面一部分的一种结构。此外,应用程序可以组织分为三大层：模型、控制器和视图。
 
 为简单起见，我们的应用程序将只有一个组件，我们将使用它作为应用程序的命名空间。
 
-在 Mithril 中，**组件**是一个对象，包含两个函数：`controller` 和 `view`。
+在 Mithril 中，**组件**是一个对象，包括一个 `view` 函数，和一个可选的 `controller` 函数。
 
 ```javascript
-// 一个空的 Mithril 组件
+// an empty Mithril component
 var myComponent = {
 	controller: function() {},
 	view: function() {}
@@ -49,47 +49,45 @@ var myComponent = {
 
 ```html
 <script>
-// 这个应用只有一个组件：todo
+//this application only has one component: todo
 var todo = {};
 </script>
 ```
-
-Typically, model entities are reusable and live outside of components (e.g. `var User = ...`). In our example, since the whole application lives in one component, we're going to use the component as a namespace for our model entities.
 
 通常，模型实体可以在组件之外重用（例如，`var User = ...`）。在我们的示例中，由于整个应用程序只有一个组件,我们将使用组件作为我们的模型实体的命名空间。
 
 ```javascript
 var todo = {};
 
-// 为简单起见，我们使用这个组件作为模型的命名空间
+//for simplicity, we use this component to namespace the model classes
 
-// Todo 类有 2 个属性
+//the Todo class has two properties
 todo.Todo = function(data) {
 	this.description = m.prop(data.description);
 	this.done = m.prop(false);
 };
 
-// TodoList 类是 Todo 的列表
+// the TodoList class is a list of Todo's
 todo.TodoList = Array;
 ```
 
 [`m.prop`](mithril.prop.md) 只是 getter-setter 函数的工厂。getter-setter 是这样工作的：
 
 ```javascript
-// 定义一个 getter-setter，初始值为 `John`
+//define a getter-setter with initial value `John`
 var a_name = m.prop("John");
 
-// 读，结果为 John
+//read the value
 var a = a_name(); //a == "John"
 
-// 将 `Mary` 的值写入
+//set the value to `Mary`
 a_name("Mary"); // Mary
 
-// 读，结果为 Mary
+//read the value
 var b = a_name(); //b == "Mary"
 ```
 
-注意，`Todo` 和 `TodoList` 类是普通 javascript 构造函数。他们可以被初始化和使用：
+注意，`Todo` 和 `TodoList` 类都是普通的原生 javascript 构造器。它们可以被初始化和使用：
 
 ```javascript
 var myTask = new todo.Todo({description: "Write code"});
@@ -107,7 +105,7 @@ myTask.done(true); //true
 isDone = myTask.done(); // isDone == true
 ```
 
-`TodoList` 类是 javascript 原生 `Array` 类的别名。
+`TodoList` 类现在仅是 javascript 原生 `Array` 类的别名。
 
 ```javascript
 var list = new todo.TodoList();
@@ -116,11 +114,11 @@ list.length; // 0
 
 根据经典 MVC 模式的定义，模型层负责数据存储、状态管理和业务逻辑。
 
-通过上面的步骤你可以看到，我们的课程符合标准：他们的所有方法和属性需要组装成一个有意义的状态。一个 `Todo` 可以实例化，它的属性可以发生变化。可以通过 `push` 方法将代办事项添加到列表中。等等。
+通过上面的步骤你可以看到，我们的类符合标准：上述类拥有的所有方法和属性都需要组装成有意义的状态。一个 `Todo` 类可以实例化，它的属性可以发生变化。可以通过 `push` 方法将代办事项添加到列表中。等等。
 
 #### 视图模型（View-Model）
 
-我们的下一步是编写视图模型（VM），将使用我们的模型类（M）。视图模型（VM）是一个模型级别的实体，用来存储 UI 状态。 在许多框架中，UI 状态通常存储在控制器（C）中，但是这样做使代码难以扩展，因为控制器不是数据提供者。在 Mithril 中，UI 状态在模型数据中，尽管它不一定会通过 ORM 实体映射到数据库。
+我们的下一步是编写视图模型（VM），以使用我们的模型类（M）。视图模型（VM）是一个模型级别的实体，用来存储 UI 状态。 在许多框架中，UI 状态通常存储在控制器（C）中，但是这样做使代码难以扩展，因为控制器不是数据提供者。在 Mithril 中，UI 状态在模型数据中，尽管它不一定会通过 ORM 实体映射到数据库。
 
 视图模型（VM）还负责处理 UI 上的业务逻辑。例如一个表单可能包含一个输入按钮和一个取消按钮。在这种情况下,视图模型（VM）的任务是跟踪当前的输入状态和原始状态，如果点击了取消按钮，则恢复到原始状态。当表单保存后，视图模型将委托更合适的 ORM 模型实体处理保存事件。
 
